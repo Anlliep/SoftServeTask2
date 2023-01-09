@@ -2,7 +2,7 @@
 #include "../AnyType.h"
 #include "../AnyType.cpp"
 
-TEST(AnyType_constructor, AnyType)
+TEST(AnyType, AnyType_constructor)
 {
 	AnyType any = 135;
 	EXPECT_EQ(135, any.GetValueInt());
@@ -12,7 +12,7 @@ TEST(AnyType_constructor, AnyType)
 	EXPECT_EQ(1.7, any.GetValueDouble());
 }
 
-TEST(AnyType_assignment, AnyType)
+TEST(AnyType, AnyType_assignment)
 {
 	int x = 135;
 	AnyType any;
@@ -20,7 +20,7 @@ TEST(AnyType_assignment, AnyType)
 	EXPECT_EQ(135, any.GetValueInt());
 }
 
-TEST(AnyType_copy_constructor, AnyType)
+TEST(AnyType, AnyType_copy_constructor)
 {
 	AnyType any1 = 135;
 	AnyType any2 = any1;
@@ -28,7 +28,7 @@ TEST(AnyType_copy_constructor, AnyType)
 	EXPECT_EQ(135, any2.GetValueInt());
 }
 
-TEST(AnyType_assignment_operator, AnyType)
+TEST(AnyType, AnyType_assignment_operator)
 {
 	AnyType any1 = 135;
 	AnyType any2 = true;
@@ -37,7 +37,7 @@ TEST(AnyType_assignment_operator, AnyType)
 	EXPECT_EQ(135, any2.GetValueInt());
 }
 
-TEST(AnyType_move_constructor, AnyType)
+TEST(AnyType, AnyType_move_constructor)
 {
 	int x = 135;
 	AnyType any1(x);
@@ -45,7 +45,7 @@ TEST(AnyType_move_constructor, AnyType)
 	EXPECT_EQ(135, any2.GetValueInt());
 }
 
-TEST(AnyType_move_assignment_operator, AnyType)
+TEST(AnyType, AnyType_move_assignment_operator)
 {
 	int x = 135;
 	AnyType any1(x);
@@ -54,13 +54,19 @@ TEST(AnyType_move_assignment_operator, AnyType)
 	EXPECT_EQ(135, any2.GetValueInt());
 }
 
-TEST(ExceptionType, AnyType)
+TEST(AnyType, GetEmpty)
 {
 	AnyType any;
 	EXPECT_THROW(any.GetValueInt(), ExceptionType);
 }
 
-TEST(AnyType_assignment_1, AnyType)
+TEST(AnyType, GetAnotherType)
+{
+	AnyType any = 1.5;
+	EXPECT_THROW(any.GetValueInt(), ExceptionType);
+}
+
+TEST(AnyType, AnyType_assignment_1)
 {
 	AnyType any1 = 135;
 	AnyType any2 = 135;
@@ -68,21 +74,21 @@ TEST(AnyType_assignment_1, AnyType)
 	EXPECT_EQ(270, any1.GetValueInt());
 }
 
-TEST(AnyType_assignment_2, AnyType)
+TEST(AnyType, AnyType_assignment_2)
 {
 	AnyType any1 = 135;
 	AnyType any2 = 1.5;
 	EXPECT_THROW(any1 += any2, ExceptionType);
 }
 
-TEST(AnyType_assignment_3, AnyType)
+TEST(AnyType, AnyType_assignment_3)
 {
 	AnyType any1;
 	AnyType any2 = 135;
 	EXPECT_THROW(any1 += any2, ExceptionType);
 }
 
-TEST(AnyType_swap, AnyType)
+TEST(AnyType, AnyType_swap)
 {
 	AnyType any1 = 135;
 	AnyType any2 = 1.5;
